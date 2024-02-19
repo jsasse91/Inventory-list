@@ -3,7 +3,7 @@ import Inventory from "../pages/Inventory";
 import Contact from "../pages/Contact";
 import { Routes, Route } from "react-router-dom";
 
-export default function Routing() {
+export default function Routing(props) {
   return (
     <Routes>
       <Route path="/" element={<Home />} />

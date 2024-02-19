@@ -5,7 +5,7 @@ export default class InventoryApi {
     this.baseUrl = baseUrl || defaultBaseUrl;
   }
 
-  get = async () => {
+  getAllProducts = async () => {
     try {
       const resp = await fetch(this.baseUrl);
       const data = await resp.json();
@@ -15,9 +15,21 @@ export default class InventoryApi {
     }
   };
 
-  put = async (item) => {
+  getProductById = async (id) => {
     try {
-      const resp = await fetch(`${this.baseUrl}/${item.id}`, {
+      const url = `${this.baseUrl}/${id}`;
+      const resp = await fetch(url);
+      const data = await resp.json();
+      return data;
+    } catch (e) {
+      console.log("Error occured in InventoryApi GET by ID method", e);
+    }
+  };
+
+  updateProduct = async (item) => {
+    try {
+      const url = `${this.baseUrl}/${item.id}`;
+      const resp = await fetch(url, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +41,7 @@ export default class InventoryApi {
     }
   };
 
-  post = async (item) => {
+  createNewProduct = async (item) => {
     try {
       const resp = await fetch(this.baseUrl, {
         method: "POST",
@@ -44,9 +56,10 @@ export default class InventoryApi {
     }
   };
 
-  delete = async (id) => {
+  deleteProductById = async (id) => {
     try {
-      const resp = await fetch(`${this.baseUrl}/${id}`, {
+      const url = `${this.baseUrl}/${id}`;
+      const resp = await fetch(url, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

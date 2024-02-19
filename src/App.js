@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routing from "./components/routing";
 
-function App() {
+function App(props) {
   return (
     <Router>
       <NavBar />
